@@ -1,0 +1,42 @@
+import React, { createContext } from "react";
+import ReactDOM from "react-dom/client";
+
+const ThemeContext = React.createContext({
+    color: 'black',
+    backgroundColor: 'white'
+ })
+
+ class HelloWorld extends React.Component {
+    render() {
+       return  (
+          <ThemeContext.Consumer>
+          {({color, backgroundColor} ) =>
+             (<div style={{
+                color: color,
+                backgroundColor: backgroundColor }}>
+                Hello World
+             </div>)
+          }
+          </ThemeContext.Consumer>
+       )
+    }
+ }
+ 
+
+ function App() {
+    return (
+       <ThemeContext.Provider value={{
+          color: 'white',
+          backgroundColor: 'green'
+       }}>
+       <HelloWorld />
+       </ThemeContext.Provider>
+    );
+ }
+ 
+ 
+ 
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
