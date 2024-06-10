@@ -15,6 +15,7 @@ class Car extends React.Component {
      );  
   }  
 }  
-const myElement = <Car brand="Ford" />;
+Car.defaultProps={brand:"Ford"}
+const myElement = <><Car/><Car brand="BMW"/></>;
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(myElement);
