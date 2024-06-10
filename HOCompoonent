@@ -1,0 +1,22 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+function Vehicle(SubComponent){  
+    return class extends React.Component{  
+        render(){  
+            return (  <div>  
+                    <p>This div will call the Car Component</p>
+                    <SubComponent></SubComponent>  
+                </div> );  
+        }  
+    }   
+} 
+class Car extends React.Component {  
+    render() {  
+      return (  
+        <div> <h2>HOC Example</h2> My Ford Car!  </div>  
+      )  
+    }  
+  }  
+var HOCar = Vehicle(Car);   
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<HOCar />);
