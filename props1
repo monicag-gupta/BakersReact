@@ -1,0 +1,20 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+function Bike(props){
+  return <h1>Props is {props.model}</h1>;
+
+}
+class Car extends React.Component {  
+  render() {     
+     return (  
+         <div>  
+           <h1> This is My { this.props.brand } Car! </h1>    
+           <p> <h4> It is Blue in color. </h4> </p> 
+           <Bike model="Avenger"/>         
+         </div>  
+     );  
+  }  
+}  
+const myElement = <Car brand="Ford" />;
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(myElement);
