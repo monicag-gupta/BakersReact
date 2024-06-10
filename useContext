@@ -23,3 +23,64 @@ function Component5() {
 }
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<Component1 />);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Example2:
+
+
+
+
+import React, { useState, createContext, useContext } from "react";
+import ReactDOM from "react-dom/client";
+
+const ThemeContext = React.createContext({
+    color: 'black',
+    backgroundColor: 'white'
+ })
+ 
+
+function HelloWorld() {
+    let theme = useContext(ThemeContext)
+    return (
+       <div style={{
+          color: theme.color,
+          backgroundColor: theme.backgroundColor }}>
+             Hello World
+       </div>
+    )
+ }
+
+ function App() {
+    return (
+       <ThemeContext.Provider value={{
+          color: 'white',
+          backgroundColor: 'green'
+       }}>
+       <HelloWorld />
+       </ThemeContext.Provider>
+    );
+ }
+ 
+
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+
