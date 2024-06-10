@@ -1,0 +1,83 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+class FetchRenderProps extends React.Component {
+    constructor(props) {
+       super(props);
+       this.state = { data: [] }
+    }
+    componentDidMount() {
+       fetch(this.props.url)
+       .then((response) => response.json())
+       .then((data) => {
+          console.log(data);
+          this.setState({  data: data });   });
+    }
+    render() {
+       return (  <div>
+             <h2>Fetch react component</h2>
+             {this.state.data && this.props.render(this.state.data)}
+          </div>
+       )  }
+ }
+  
+ 
+ class SimpleRenderProps extends React.Component {
+    render() { return (   <>
+             <FetchRenderProps url="users.json" render={(items) => (
+                <ul>
+                   {items && items.length && items.map((item) =>
+                      <li key={item.id}>{item.name}</li>
+                   )} </ul>
+             )} />
+             <FetchRenderProps url="todo_list.json" render={(items) => (
+                <ul>
+                   {items && items.length && items.map((item) =>
+                      <li key={item.id}>{item.title} {item.is_done && <strong>Done</strong>}</li>
+                   )}
+                </ul>
+             )} />
+          </>
+       )    }    
+ }
+
+ 
+
+ function App() {
+    return (
+       <div className="container">
+          <div style={{ padding: "10px" }}>
+             <div>
+                <SimpleRenderProps />
+             </div>
+          </div>
+       </div>
+    );
+ }
+ 
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+
+
+
+
+
+
+
+
+
+
+public/users.json 
+
+[{"id":1,"name":"John","age":18},
+{"id":2,"name":"Doe","age":24},
+{"id":3,"name":"Jane","age":26}]
+
+
+
+public/todo_list.json
+
+[{"id":1,"title":"Learn JavaScript","is_done":true},
+{"id":2,"title":"Learn React","is_done":true},
+{"id":3,"title":"Learn Typescript","is_done":false}]
+
