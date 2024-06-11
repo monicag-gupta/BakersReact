@@ -195,3 +195,29 @@ ReactDOM.render(
 
 
 
+
+Notes:
+
+Reducer :
+Login: setState(user:inputParameter.value)
+Logout: setState(user:emptyvalues}
+colorChange: setState(theme:inputParameter.value)
+
+In Redux: setState are the Reducer funtions
+3 reducer functions: login(), logout(), colorChange()
+inputParameter: action.payload
+Global state is written as state.globalstatevariable:
+state.user, state.theme
+To calla reducer function, we need a high order function called dispatch. 
+To call login function: dispatch(login({id:122,name:”John”}))
+To call logout function: dispatch(logout())
+To call colorChange function: dispatch(colorChange(“Red”))
+
+Now we have 2 global state: user, theme: useSelector() is used to get the global state object:
+state.user.value, state.theme.value
+Store is created normally in index.js, store has the reducers json. 
+The Store is provided to the root Component so that it can be made available to all components in the hierarchy.
+
+
+
+
