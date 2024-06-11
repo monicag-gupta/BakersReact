@@ -29,3 +29,19 @@ root.render(<Todos />);
 
 
 
+
+
+Every Reducer: global state:
+Requirement:
+Reducer Function: fnReducer(globalStateObj,actionForChangingState){..}
+Action.type: CapsLetter; various types: use switch case to work with the action type
+Default value from the switch case
+Global state Object :globalStateObj
+How to use a reducer:
+useReducer(fnReducer, globalStateObj) 
+Returns: changed globalStateObj, dispatcher function
+Dispatch(action json as param) -> when Called -> calls the useReducer->fnReducer-> returns the changed globalStateObj
+
+
+
+
