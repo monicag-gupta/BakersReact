@@ -113,9 +113,118 @@ root.render(<App />);
 
 
 
+Create a pages folder : pages
+Put all the required pages there
+Layout.js
+Home.js
+Blogs.js
+Contact.js
+Login.js
+PrivateRoutes.js
+NoPage.js
+Link it to main App, Edit: index.js
+We wrap our content first with <BrowserRouter>.
+Then we define our <Routes>. 
+There is an Authenticated Blogs Link which is protected.
+The Home component route does not have a path but has an index attribute. That specifies this route as the default route for the parent route, which is /.
+Setting the path to * will act as a catch-all for any undefined URLs. This is great for a 404 error page.
 
 
 
+
+
+
+Login.js:
+
+const Login = () => {
+    return (
+        <table>
+            <tr>
+                <td>LoginID: </td>
+                <td><input type="text"></input></td>
+            </tr><tr>
+                <td>Password: </td>
+                <td><input type="text"></input></td>
+            </tr>
+        </table>
+    );
+  };
+    export default Login;
+
+
+
+
+PrivateRoutes.js:
+
+import { Outlet, Navigate } from 'react-router-dom'
+const PrivateRoutes = () => {
+    let auth = {'token': false}
+    return(
+        auth.token ? <Outlet/> : <Navigate to="/login"/>
+    )
+}
+
+export default PrivateRoutes
+
+
+
+
+
+Layout.js
+
+import { Outlet, Link } from "react-router-dom";
+const Layout = () => {
+  return (
+    <>
+      <nav>
+        <ul>
+          <li> <Link to="/">Home</Link> </li>
+          <li> <Link to="/blogs">Blogs</Link> </li>
+          <li> <Link to="/authblogs">Authenticated Blogs</Link> </li>     
+          <li> <Link to="/contact">Contact</Link> </li>
+          <li> <Link to="/login">Login</Link> </li>
+          <li> <Link to="/NotAvailablePage">NotAvailablePage</Link> </li>
+        </ul>
+      </nav>
+      <Outlet />
+    </>
+  )
+};
+export default Layout;
+
+
+
+
+
+index.js
+
+
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./pages/Layout"; import Home from "./pages/Home";
+import Blogs from "./pages/Blogs"; import Contact from "./pages/Contact";
+import NoPage from "./pages/NoPage"; import Login from "./pages/Login";
+import PrivateRoutes from "./pages/PrivateRoutes";
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+            <Route element={<PrivateRoutes />}>
+              <Route path="authblogs" element={<Blogs />} />
+            </Route>
+            <Route path="contact" element={<Contact />} />
+            <Route path="blogs" element={<Blogs />} />
+            <Route path="login" element={<Login />} />
+            <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
 
 
 
