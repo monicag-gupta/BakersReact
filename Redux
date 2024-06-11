@@ -1,0 +1,10 @@
+Here we create a new app in react:
+> npx create-react-app my-react-app-redux
+Go to the project folder:
+> cd my-react-app-redux
+Install redux:
+> npm install redux react-redux  @reduxjs/toolkit  --save
+Create store in index.js, with reducers
+Use reducer for App
+Create the Components : Profile.js, Login.js, ChangeColor.js in the folder src/components
+Create the reducers : user.js, theme.js in the folder src/features
